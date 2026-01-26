@@ -1,0 +1,18 @@
+export const Messages = [
+  "Hola",
+  "¿Cómo estás?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+  "¿Qué tal?",
+]
