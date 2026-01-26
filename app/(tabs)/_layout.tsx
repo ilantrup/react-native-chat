@@ -28,14 +28,15 @@ export default function TabLayout() {
 
   return (
     <Tabs
-    /*     screenOptions={{
+      translucent={true}
+      /*     screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: useClientOnlyValue(false, true),
         tabBarShowLabel: true,
       }}*/
     >
       <Tabs.Screen
-        name="index"
+        name="(home)"
         options={{
           title: "Todos los chats",
           tabBarLabel: "Chats",

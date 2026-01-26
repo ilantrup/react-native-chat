@@ -4,8 +4,14 @@ import { Messages } from "@/constants/Messages";
 
 export default function MessagesSection({ messages }: { messages: string[] }) {
   return (
-    <FlatList className="flex-1" data={messages} renderItem={({ item, index }) => (
-      <MessageBubble message={item} isSender={index % 2 === 0} />
-    )} />
-  )
+    <FlatList
+      className="flex-1"
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      data={messages}
+      renderItem={({ item, index }) => (
+        <MessageBubble message={item} isSender={index % 2 === 0} />
+      )}
+    />
+  );
 }
