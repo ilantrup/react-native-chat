@@ -3,12 +3,14 @@ import { FlatList, LayoutChangeEvent } from "react-native";
 import ChatCard from "@/components/ChatCard";
 import { Chat } from "@/types/ChatType";
 import Separator from "@/components/Separator";
+import { useChatStore } from "@/store/chatStore";
 
-export default function AllChatsSection({ chats }: { chats: Chat[] }) {
+export default function AllChatsSection() {
   const [listHeight, setListHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
-
   const scrollEnabled = contentHeight > listHeight;
+
+  const chats = useChatStore((state) => state.chats);
 
   return (
     <FlatList

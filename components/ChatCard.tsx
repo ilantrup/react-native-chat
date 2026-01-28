@@ -7,7 +7,6 @@ import { Image, Pressable, Text, useColorScheme, View } from "react-native";
 const ChatCard = ({ chat }: { chat: Chat }) => {
   const colorScheme = useColorScheme();
   const StyledPressable = styled(Pressable);
-
   return (
     <Link href={`/(tabs)/(chat)/${chat.id}`} asChild>
       <StyledPressable

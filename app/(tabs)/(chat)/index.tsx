@@ -1,9 +1,5 @@
-import ChatCard from "@/components/ChatCard";
-import { Messages } from "@/constants/Messages";
-import MessagesSection from "@/sections/MessagesSection";
 import React, { useEffect, useState } from "react";
 import {
-  FlatList,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -13,13 +9,18 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MOCK_CHATS } from "@/constants/Chats";
 import AllChatsSection from "@/sections/AllChatsSection";
+import { useChatStore } from "@/store/chatStore";
 
 export default function AllChatsScreen() {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const TAB_BAR_HEIGHT = Platform.OS === "ios" ? 49 : 56;
-
+  const setChats = useChatStore((state) => state.setChats);
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    setChats(MOCK_CHATS);
+  }, []);
 
   useEffect(() => {
     const showListener =
@@ -54,7 +55,7 @@ export default function AllChatsScreen() {
             : insets.bottom + TAB_BAR_HEIGHT + 10,
         }} 
       >
-        <AllChatsSection chats={MOCK_CHATS} />
+        <AllChatsSection />
       </View>
     </KeyboardAvoidingView>
   );
