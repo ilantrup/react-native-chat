@@ -36,7 +36,7 @@ export default function TabLayout() {
       }}*/
     >
       <Tabs.Screen
-        name="(home)"
+        name="(chat)"
         options={{
           title: "Todos los chats",
           tabBarLabel: "Chats",

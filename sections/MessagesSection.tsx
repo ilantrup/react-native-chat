@@ -1,6 +1,5 @@
 import { FlatList } from "react-native";
-import MessageBubble from "./MessageBubble";
-import { Messages } from "@/constants/Messages";
+import MessageBubble from "../components/MessageBubble";
 
 export default function MessagesSection({ messages }: { messages: string[] }) {
   return (

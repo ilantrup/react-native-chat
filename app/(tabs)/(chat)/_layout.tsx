@@ -8,7 +8,8 @@ export default function HomeLayout() {
         title: "Chats",
       }}
     >
-      <Stack.Screen name="index" />
+      <Stack.Screen name="index" options={{ title: "Todos los chats" }} />
+      <Stack.Screen name="[chat_id]" options={{ title: "Chat" }} />
     </Stack>
   );
 }

@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react"; // <--- 1. Importar useState y useEffect
+import ChatCard from "@/components/ChatCard";
+import { Messages } from "@/constants/Messages";
+import MessagesSection from "@/sections/MessagesSection";
+import React, { useEffect, useState } from "react";
 import {
+  FlatList,
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   useColorScheme,
   View,
-  Keyboard,
 } from "react-native";
-import ChatInput from "@/components/ChatInput";
-import MessagesSection from "@/components/MessagesSection";
-import { Messages } from "@/constants/Messages";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { MOCK_CHATS } from "@/constants/Chats";
+import AllChatsSection from "@/sections/AllChatsSection";
 
-export default function ChatScreen() {
+export default function AllChatsScreen() {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const TAB_BAR_HEIGHT = Platform.OS === "ios" ? 49 : 56;
@@ -43,19 +46,15 @@ export default function ChatScreen() {
       className={`flex-1 bg-${colorScheme === "dark" ? "black" : "white"}`}
       keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
     >
-      <View className="flex-1 px-2 py-2">
-        <MessagesSection messages={Messages} />
-      </View>
-
       <View
-        className="p-2 border-t border-gray-200"
+        className=" flex-1 px-2 py-2 border-t border-gray-200"
         style={{
           paddingBottom: isKeyboardVisible
             ? 10
             : insets.bottom + TAB_BAR_HEIGHT + 10,
-        }}
+        }} 
       >
-        <ChatInput />
+        <AllChatsSection chats={MOCK_CHATS} />
       </View>
     </KeyboardAvoidingView>
   );
