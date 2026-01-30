@@ -1,11 +1,6 @@
 import "@/global.css";
 import React from "react";
 
-import { SendIcon } from "@/components/Icons";
-import { useClientOnlyValue } from "@/components/useClientOnlyValue";
-import { useColorScheme } from "@/components/useColorScheme";
-import Colors from "@/constants/Colors";
-
 import { withLayoutContext } from "expo-router";
 import {
   createNativeBottomTabNavigator,
@@ -24,31 +19,30 @@ const Tabs = withLayoutContext<
 >(BottomTabNavigator);
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       translucent={true}
-      /*     screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: useClientOnlyValue(false, true),
-        tabBarShowLabel: true,
-      }}*/
     >
       <Tabs.Screen
-        name="(chat)"
+        name="(1services)"
+        options={{
+          title: "Todos los servicios",
+          tabBarLabel: "Ayuda",
+          tabBarIcon: () => ({ sfSymbol: "lifepreserver" }),
+        }}
+      />
+      <Tabs.Screen
+        name="(2chat)"
         options={{
           title: "Todos los chats",
           tabBarLabel: "Chats",
-          //tabBarIcon: ({ color }) => <SendIcon color={color} />,
           tabBarIcon: () => ({ sfSymbol: "message" }),
         }}
       />
       <Tabs.Screen
-        name="chatLocation"
+        name="(3location)"
         options={{
-          title: "Location",
-          //tabBarIcon: ({ color }) => <SendIcon color={color} />,
+          title: "Ubicación",
           tabBarIcon: () => ({ sfSymbol: "location" }),
         }}
       />

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FlatList, LayoutChangeEvent } from "react-native";
-import ChatCard from "@/components/ChatCard";
-import { Chat } from "@/types/ChatType";
+import { ChatCard } from "@/components/ChatCard";
 import Separator from "@/components/Separator";
 import { useChatStore } from "@/store/chatStore";
 
