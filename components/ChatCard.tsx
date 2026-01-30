@@ -13,7 +13,7 @@ export const ChatCard = ({ chat }: { chat: Chat }) => {
 
   return (
     <StyledPressable
-      onPress={() => router.push(`/(tabs)/(chat)/${chat.id}`)}
+      onPress={() => router.push(`/(tabs)/(2chat)/${chat.id}`)}
       className="border-b border-gray-100 dark:border-gray-800"
       style={({ pressed }) => ({
         backgroundColor: pressed
