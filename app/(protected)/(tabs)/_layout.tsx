@@ -1,6 +1,4 @@
-import "@/global.css";
 import React from "react";
-
 import { withLayoutContext } from "expo-router";
 import {
   createNativeBottomTabNavigator,
