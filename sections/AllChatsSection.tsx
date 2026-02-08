@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { FlatList, LayoutChangeEvent } from "react-native";
+import { FlatList, LayoutChangeEvent, Platform } from "react-native";
 import { ChatCard } from "@/components/ChatCard";
 import Separator from "@/components/Separator";
 import { useChatStore } from "@/store/chatStore";
+import { Chat } from "@/types/ChatType";
+import { TAB_BAR_HEIGHT } from "@/constants/Config";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function AllChatsSection() {
   const [listHeight, setListHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   const scrollEnabled = contentHeight > listHeight;
+  const insets = useSafeAreaInsets();
 
   const chats = useChatStore((state) => state.chats);
-
   return (
     <FlatList
       className="flex-1"
@@ -26,6 +29,7 @@ export default function AllChatsSection() {
       onContentSizeChange={(w, h) => {
         setContentHeight(h);
       }}
+      contentContainerStyle={{ paddingBottom: Platform.OS === "ios" ? insets.bottom + TAB_BAR_HEIGHT + 10 : 0 }}
     />
   );
 }
