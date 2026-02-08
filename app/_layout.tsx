@@ -37,13 +37,15 @@ export default function RootLayout() {
     if (!isLoggedIn && inAuthGroup) {
       router.replace("/login");
     } else if (isLoggedIn && segments[0] === "login") {
-      router.replace("/(protected)/(tabs)");
+      router.replace("/(protected)");
     }
   }, [isLoggedIn, segments, loaded]);
 
   if (!loaded) {
     return null;
   }
+
+
 
   const inAuthGroup = segments[0] === "(protected)";
 

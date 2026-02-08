@@ -44,6 +44,13 @@ export default function TabLayout() {
           tabBarIcon: () => ({ sfSymbol: "location" }),
         }}
       />
+      <Tabs.Screen
+        name="(4settings)"
+        options={{
+          title: "Ajustes",
+          tabBarIcon: () => ({ sfSymbol: "gear" }),
+        }}
+      />
     </Tabs>
   );
 }
