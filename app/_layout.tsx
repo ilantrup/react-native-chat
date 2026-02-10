@@ -35,8 +35,8 @@ export default function RootLayout() {
 
     const inAuthGroup = segments[0] === "(protected)";
     if (!isLoggedIn && inAuthGroup) {
-      router.replace("/(login)");
-    } else if (isLoggedIn && segments[0] === "(login)") {
+      router.replace("/(auth)");
+    } else if (isLoggedIn && segments[0] === "(auth)") {
       router.replace("/(protected)");
     }
   }, [isLoggedIn, segments, loaded]);
@@ -53,5 +53,5 @@ export default function RootLayout() {
     return <View />;
   }
 
-  return <Slot />;
+  return  <Slot />;
 }
