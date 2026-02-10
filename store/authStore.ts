@@ -7,7 +7,10 @@ const defaultState = {
   isLoggedIn: false,
   isLoading: false,
   error: null,
-  userInfo: null,
+  userInfo: {
+    email: "",
+    name: "",
+  },
 };
 
 export const useAuthStore = create<AuthState>()(
@@ -33,7 +36,10 @@ export const useAuthStore = create<AuthState>()(
 
           set({
             isLoggedIn: true,
-            userInfo: "", //data.user,
+            userInfo: {
+              email,
+              name: "Ilan",
+            }, //data.user,
             isLoading: false,
           });
         } catch (error: any) {
@@ -57,6 +63,7 @@ export const useAuthStore = create<AuthState>()(
       storage: createJSONStorage(() => AsyncStorage),
       partialize: (state) => ({
         isLoggedIn: state.isLoggedIn,
+        userInfo: state.userInfo,
       }),
     },
   ),

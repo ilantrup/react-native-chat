@@ -11,7 +11,8 @@ import "react-native-reanimated";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const { isLoggedIn } = useAuthStore();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const userInfo = useAuthStore((state) => state.userInfo);
   const segments = useSegments();
   const router = useRouter();
 
@@ -31,12 +32,18 @@ export default function RootLayout() {
   }, [loaded]);
 
   useEffect(() => {
+    console.log("isLoggedIn", isLoggedIn);
+    console.log("userInfo", userInfo);
+    console.log("segments", segments);
+  }, [isLoggedIn, userInfo, segments]);
+
+  useEffect(() => {
     if (!loaded) return;
 
     const inAuthGroup = segments[0] === "(protected)";
     if (!isLoggedIn && inAuthGroup) {
       router.replace("/(auth)");
-    } else if (isLoggedIn && segments[0] === "(auth)") {
+    } else if (isLoggedIn && userInfo.email && segments[0] === "(auth)") {
       router.replace("/(protected)");
     }
   }, [isLoggedIn, segments, loaded]);
