@@ -47,7 +47,7 @@ export default function ChatLocation() {
       );
     }
   };
-
+  //Si se mueve el location o el destination, centramos el mapa
   useEffect(() => {
     if (location && destination) {
       centerOnUserAndDestination();
