@@ -5,10 +5,10 @@ export default function LocationLayout() {
     <Stack
       screenOptions={{
         headerShown: true,
-        title: "Ubicación",
+        title: "Ajustes",
       }}
     >
-      <Stack.Screen name="index" options={{ title: "Ubicación" }} />
+      <Stack.Screen name="index" options={{ title: "Ajustes" }} />
     </Stack>
   );
 }
