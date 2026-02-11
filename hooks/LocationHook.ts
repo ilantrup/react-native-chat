@@ -1,14 +1,20 @@
 import { showLocationSettingsAlert } from "@/utils/AlertUtils";
-import { checkLocationPermission, requestLocationPermission } from "@/utils/PermissionUtils";
+import {
+  checkLocationPermission,
+  requestLocationPermission,
+} from "@/utils/PermissionUtils";
 import * as Location from "expo-location";
 import { useEffect, useRef, useState } from "react";
 
 export function useLocation() {
-  const [location, setLocation] = useState<Location.LocationObjectCoords | null>(null);
+  const [location, setLocation] =
+    useState<Location.LocationObjectCoords | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const locationSubscription = useRef<Location.LocationSubscription | null>(null);
+  const locationSubscription = useRef<Location.LocationSubscription | null>(
+    null,
+  );
 
   const startWatching = async (): Promise<void> => {
     setIsLoading(true);
@@ -34,9 +40,10 @@ export function useLocation() {
         {
           accuracy: Location.Accuracy.High, // Alta precisión
           timeInterval: 1000, // Actualizar cada 1 segundo (mínimo)
-          distanceInterval: 50, // Actualizar cada 50 metros
+          distanceInterval: 10, // Actualizar cada 10 metros
         },
         (newLocation) => {
+          console.log("Se actualizo la location");
           setLocation(newLocation.coords);
           setIsLoading(false);
         },
@@ -49,12 +56,21 @@ export function useLocation() {
 
   // Al montar el componente, iniciamos el rastreo
   useEffect(() => {
-    startWatching();
+    let isMounted = true; // Bandera para saber si el componente sigue vivo
 
-    // Cleanup: Al desmontar, dejamos de escuchar el GPS para ahorrar batería
+    const init = async () => {
+      // Ahora sí podemos esperar a que termine la configuración
+      await startWatching();
+    };
+
+    init();
+
+    // Cleanup: Al desmontar
     return () => {
+      isMounted = false;
       if (locationSubscription.current) {
         locationSubscription.current.remove();
+        locationSubscription.current = null; // Buena práctica limpiarlo
       }
     };
   }, []);

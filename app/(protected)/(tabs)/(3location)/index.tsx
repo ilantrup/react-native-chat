@@ -1,7 +1,7 @@
 import { useLocation } from "@/hooks/LocationHook";
 import { Ionicons } from "@expo/vector-icons";
 import { styled } from "nativewind";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
   Image,
@@ -31,24 +31,28 @@ export default function ChatLocation() {
 
   const { location, errorMsg, isLoading, retryLocation } = useLocation();
 
-  // 4. FUNCIÓN PARA MOVER LA CÁMARA
-  const centerOnUser = () => {
-    if (location && mapRef.current) {
-      mapRef.current.animateCamera(
+  const centerOnUserAndDestination = () => {
+    if (location && destination && mapRef.current) {
+      mapRef.current.fitToCoordinates(
+        [
+          // Punto 1: Tu ubicación actual
+          { latitude: location.latitude, longitude: location.longitude },
+          // Punto 2: El destino (del useState)
+          destination,
+        ],
         {
-          center: {
-            latitude: location.latitude,
-            longitude: location.longitude,
-          },
-          pitch: 0,
-          heading: 0,
-          altitude: 2000, // Para apple maps
-          zoom: 8, // Para google maps
+          edgePadding: { top: 100, right: 50, bottom: 100, left: 50 },
+          animated: true,
         },
-        { duration: 1000 },
       );
     }
   };
+
+  useEffect(() => {
+    if (location && destination) {
+      centerOnUserAndDestination();
+    }
+  }, [location, destination]);
 
   if (isLoading && !location) {
     return (
@@ -109,26 +113,28 @@ export default function ChatLocation() {
           strokeWidth={6}
         />*/}
       </StyledMapView>
-      <View
-        pointerEvents="box-none"
-        className="absolute inset-0 items-end justify-start pt-20 pr-4"
-      >
+      {location && (
         <View
-          style={[
-            styles.arrowButton,
-            {
-              backgroundColor: colorScheme === "dark" ? "#374151" : "#F3F4F6",
-            },
-          ]}
+          pointerEvents="box-none"
+          className="absolute inset-0 items-end justify-start pt-20 pr-4"
         >
-          <StyledPressable
-            onPress={centerOnUser}
-            className="w-full h-full items-center justify-center active:opacity-70"
+          <View
+            style={[
+              styles.arrowButton,
+              {
+                backgroundColor: colorScheme === "dark" ? "#374151" : "#F3F4F6",
+              },
+            ]}
           >
-            <Ionicons name="navigate-outline" size={24} color="#007AFF" />
-          </StyledPressable>
+            <StyledPressable
+              onPress={centerOnUserAndDestination}
+              className="w-full h-full items-center justify-center active:opacity-70"
+            >
+              <Ionicons name="navigate-outline" size={24} color="#007AFF" />
+            </StyledPressable>
+          </View>
         </View>
-      </View>
+      )}
     </View>
   );
 }
