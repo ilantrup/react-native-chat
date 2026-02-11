@@ -29,12 +29,12 @@ export function useLocation() {
         return;
       }
 
-      // Iniciamos el rastreo en tiempo real (IMPORTANTE para mapas)
+      // Iniciamos el rastreo en tiempo real
       locationSubscription.current = await Location.watchPositionAsync(
         {
           accuracy: Location.Accuracy.High, // Alta precisión
           timeInterval: 1000, // Actualizar cada 1 segundo (mínimo)
-          distanceInterval: 10, // Actualizar cada 10 metros
+          distanceInterval: 50, // Actualizar cada 50 metros
         },
         (newLocation) => {
           setLocation(newLocation.coords);

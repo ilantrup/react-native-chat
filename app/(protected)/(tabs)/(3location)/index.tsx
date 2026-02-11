@@ -1,13 +1,25 @@
 import { useLocation } from "@/hooks/LocationHook";
+import { Ionicons } from "@expo/vector-icons";
 import { styled } from "nativewind";
-import React, { useState } from "react";
-import { ActivityIndicator, Image, Pressable, Text, View } from "react-native";
+import React, { useRef, useState } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from "react-native";
 import MapView, { LatLng, Marker } from "react-native-maps";
+
 const messiImage = require("@/assets/images/messi.png");
 const StyledMapView = styled(MapView);
-import MapViewDirections from "react-native-maps-directions";
+const StyledPressable = styled(Pressable);
 
 export default function ChatLocation() {
+  const colorScheme = useColorScheme();
+  const mapRef = useRef<MapView>(null);
   const [origin, setOrigin] = useState<LatLng>({
     latitude: -34.605914,
     longitude: -58.420097,
@@ -18,10 +30,33 @@ export default function ChatLocation() {
   });
 
   const { location, errorMsg, isLoading, retryLocation } = useLocation();
+
+  // 4. FUNCIÓN PARA MOVER LA CÁMARA
+  const centerOnUser = () => {
+    if (location && mapRef.current) {
+      mapRef.current.animateCamera(
+        {
+          center: {
+            latitude: location.latitude,
+            longitude: location.longitude,
+          },
+          pitch: 0,
+          heading: 0,
+          altitude: 2000, // Para apple maps
+          zoom: 8, // Para google maps
+        },
+        { duration: 1000 },
+      );
+    }
+  };
+
   if (isLoading && !location) {
     return (
       <View className="flex-1 justify-center items-center">
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator
+          size="large"
+          color={colorScheme === "dark" ? "white" : "black"}
+        />
         <Text>Buscando GPS...</Text>
       </View>
     );
@@ -40,8 +75,9 @@ export default function ChatLocation() {
     );
   }
   return (
-    <View className="flex-1">
+    <View className="flex-1 relative">
       <StyledMapView
+        ref={mapRef}
         className="w-full h-full"
         initialRegion={{
           latitude: location?.latitude ?? origin.latitude,
@@ -50,7 +86,8 @@ export default function ChatLocation() {
           longitudeDelta: 0.01,
         }}
         showsUserLocation={true}
-        followsUserLocation={true}
+        showsCompass={true}
+        showsScale={true}
       >
         <Marker
           draggable
@@ -72,6 +109,45 @@ export default function ChatLocation() {
           strokeWidth={6}
         />*/}
       </StyledMapView>
+      <View
+        pointerEvents="box-none"
+        className="absolute inset-0 items-end justify-start pt-20 pr-4"
+      >
+        <View
+          style={[
+            styles.arrowButton,
+            {
+              backgroundColor: colorScheme === "dark" ? "#374151" : "#F3F4F6",
+            },
+          ]}
+        >
+          <StyledPressable
+            onPress={centerOnUser}
+            className="w-full h-full items-center justify-center active:opacity-70"
+          >
+            <Ionicons name="navigate-outline" size={24} color="#007AFF" />
+          </StyledPressable>
+        </View>
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  arrowButton: {
+    width: 45,
+    height: 45,
+    borderRadius: 24,
+    paddingTop: 4,
+    paddingRight: 2,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#D1D5DB",
+    elevation: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+});
