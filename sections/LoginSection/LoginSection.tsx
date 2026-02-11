@@ -30,7 +30,7 @@ const LoginSection = (props: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View className={`flex-1 ${colorScheme === "dark" ? "bg-slate-950" : "bg-slate-50"}`}>
+      <View className={`flex-1 ${colorScheme === "dark" ? "bg-black" : "bg-slate-50"}`}>
         <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
 
         <Stack.Screen

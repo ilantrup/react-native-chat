@@ -17,7 +17,7 @@ export default function Login() {
   };
 
   return (
-    <View className={`flex-1 ${colorScheme === "dark" ? "bg-slate-950" : "bg-slate-50"}`}>
+    <View className={`flex-1 ${colorScheme === "dark" ? "bg-black" : "bg-slate-50"}`}>
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
 
       <View className="flex-1 justify-center px-8">
@@ -26,7 +26,7 @@ export default function Login() {
             Bienvenido
           </Text>
           <Text className={`text-lg text-center ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}>
-            Tu app increíble empieza aquí.
+            Tu salud empieza aquí
           </Text>
         </View>
 

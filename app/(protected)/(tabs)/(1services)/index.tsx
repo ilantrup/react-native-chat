@@ -6,7 +6,7 @@ export default function AllServicesScreen() {
   const colorScheme = useColorScheme();
 
   return (
-    <View className={`flex-1 ${colorScheme === "dark" ? "bg-slate-950" : "bg-slate-50"}`}>
+    <View className={`flex-1 ${colorScheme === "dark" ? "bg-black" : "bg-slate-50"}`}>
       <AllServicesSection />
     </View>
   );
