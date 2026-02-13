@@ -1,27 +1,30 @@
+import { Icon, Label, NativeTabs } from "expo-router/unstable-native-tabs";
 import React from "react";
-import { withLayoutContext } from "expo-router";
-import {
-  createNativeBottomTabNavigator,
-  NativeBottomTabNavigationOptions,
-  NativeBottomTabNavigationEventMap,
-} from "@bottom-tabs/react-navigation";
-import { ParamListBase, TabNavigationState } from "@react-navigation/native";
-
-const BottomTabNavigator = createNativeBottomTabNavigator().Navigator;
-
-const Tabs = withLayoutContext<
-  NativeBottomTabNavigationOptions,
-  typeof BottomTabNavigator,
-  TabNavigationState<ParamListBase>,
-  NativeBottomTabNavigationEventMap
->(BottomTabNavigator);
 
 export default function TabLayout() {
   return (
-    <Tabs
-      translucent={true}
-    >
-      <Tabs.Screen
+    <NativeTabs>
+      <NativeTabs.Trigger name="(1services)">
+        <Label>Ayuda</Label>
+        <Icon sf={"lifepreserver"} drawable="ic_secure" />
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="(2chat)">
+        <Label>Chats</Label>
+        <Icon sf={"message"} drawable="ic_menu_message" />
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="(3location)">
+        <Label>Ubicación</Label>
+        <Icon sf={"location"} drawable="ic_menu_mylocation" />
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="(4settings)">
+        <Label>Ajustes</Label>
+        <Icon sf={"gear"} drawable="ic_menu_manage" />
+      </NativeTabs.Trigger>
+
+      {/*<Tabs.Screen
         name="(1services)"
         options={{
           title: "Todos los servicios",
@@ -32,12 +35,12 @@ export default function TabLayout() {
       <Tabs.Screen
         name="(2chat)"
         options={{
+          <Tabs.Screen
           title: "Todos los chats",
           tabBarLabel: "Chats",
           tabBarIcon: () => ({ sfSymbol: "message" }),
         }}
       />
-      <Tabs.Screen
         name="(3location)"
         options={{
           title: "Ubicación",
@@ -50,7 +53,7 @@ export default function TabLayout() {
           title: "Ajustes",
           tabBarIcon: () => ({ sfSymbol: "gear" }),
         }}
-      />
-    </Tabs>
+      />*/}
+    </NativeTabs>
   );
 }
