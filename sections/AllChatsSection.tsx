@@ -29,7 +29,6 @@ export default function AllChatsSection() {
       onContentSizeChange={(w, h) => {
         setContentHeight(h);
       }}
-      contentContainerStyle={{ paddingBottom: Platform.OS === "ios" ? insets.bottom + TAB_BAR_HEIGHT + 10 : 0 }}
     />
   );
 }
