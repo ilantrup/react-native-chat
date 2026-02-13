@@ -1,7 +1,10 @@
-import { AuthState } from "@/types/AuthType";
+import { AuthState, User } from "@/types/AuthType";
+import { getUserInfo } from "@/utils/GoogleUtils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+
+
 
 const defaultState = {
   isLoggedIn: false,
@@ -10,6 +13,9 @@ const defaultState = {
   userInfo: {
     email: "",
     name: "",
+    familyName: "",
+    picture: "",
+    fullName: "",
   },
 };
 
@@ -39,6 +45,9 @@ export const useAuthStore = create<AuthState>()(
             userInfo: {
               email,
               name: "Ilan",
+              familyName: "Trupkin",
+              picture: "",
+              fullName: "Ilan Trupkin",
             }, //data.user,
             isLoading: false,
           });
@@ -50,6 +59,14 @@ export const useAuthStore = create<AuthState>()(
             isLoading: false,
           });
         }
+      },
+      googleLogin: async (token: string | undefined) => {
+        const userInfo = await getUserInfo(token);
+        set({
+          isLoggedIn: true,
+          userInfo,
+          isLoading: false,
+        });
       },
 
       logout: () => {

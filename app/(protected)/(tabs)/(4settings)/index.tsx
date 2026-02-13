@@ -25,7 +25,7 @@ export default function Settings() {
             <Text
               className={`${colorScheme === "dark" ? "text-gray-200" : "text-gray-800"} text-lg font-medium`}
             >
-              {userInfo?.name || "Sin nombre"}
+              {userInfo?.fullName || "Sin nombre"}
             </Text>
           </View>
         </View>
