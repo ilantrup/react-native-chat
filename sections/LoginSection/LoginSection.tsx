@@ -74,7 +74,7 @@ const LoginSection = (props: Props) => {
 
           <View className="space-y-4">
             <CustomInput
-              label="Email"
+              label="Correo electrónico"
               iconName="mail-outline"
               colorScheme={colorScheme}
               placeholder="ejemplo@correo.com"

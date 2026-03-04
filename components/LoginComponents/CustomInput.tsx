@@ -54,6 +54,7 @@ export const CustomInput = ({
             colorScheme === "dark" ? "text-slate-100" : "text-slate-800"
           }`}
           secureTextEntry={isPassword && !showPassword}
+          textAlignVertical="center"
         />
         {isPassword && (
           <Pressable onPress={() => setShowPassword(!showPassword)}>
