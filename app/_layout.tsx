@@ -10,6 +10,11 @@ import "react-native-reanimated";
 
 SplashScreen.preventAutoHideAsync();
 
+SplashScreen.setOptions({
+  fade: true,
+  duration: 500,
+});
+
 export default function RootLayout() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const userInfo = useAuthStore((state) => state.userInfo);
