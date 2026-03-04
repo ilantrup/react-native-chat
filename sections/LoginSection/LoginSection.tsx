@@ -1,4 +1,7 @@
-import { Ionicons } from "@expo/vector-icons";
+import { AuthDivider } from "@/components/LoginComponents/AuthDivider";
+import { AuthHeader } from "@/components/LoginComponents/AuthHeader";
+import { CustomInput } from "@/components/LoginComponents/CustomInput";
+import { SocialButton } from "@/components/LoginComponents/SocialButton";
 import {
   AuthRequest,
   AuthRequestPromptOptions,
@@ -7,8 +10,7 @@ import {
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as WebBrowser from "expo-web-browser";
-import { styled } from "nativewind";
-import React, { useState } from "react";
+import React from "react";
 import {
   ColorSchemeName,
   Keyboard,
@@ -16,7 +18,6 @@ import {
   Platform,
   Pressable,
   Text,
-  TextInput,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -37,7 +38,6 @@ type Props = {
   ) => Promise<AuthSessionResult>;
 };
 
-const StyledPressable = styled(Pressable);
 const LoginSection = (props: Props) => {
   const {
     email,
@@ -46,13 +46,9 @@ const LoginSection = (props: Props) => {
     setPassword,
     handleLogin,
     colorScheme,
-    request,
-    response,
     promptAsync,
   } = props;
   const router = useRouter();
-  const [showPassword, setShowPassword] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -74,72 +70,36 @@ const LoginSection = (props: Props) => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           className="flex-1 justify-center px-6"
         >
-          <View className="mb-10">
-            <Text
-              className={`text-3xl font-bold ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"} text-center`}
-            >
-              ¡Hola de nuevo!
-            </Text>
-            <Text
-              className={`text-slate-500 text-center mt-2 text-base ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}
-            >
-              Ingresa tus datos para continuar
-            </Text>
-          </View>
+          <AuthHeader colorScheme={colorScheme} />
 
           <View className="space-y-4">
-            <View className="space-y-2">
-              <Text
-                className={`text-slate-600 font-medium ml-1 ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}
-              >
-                Email
-              </Text>
-              <View
-                className={`flex-row items-center border rounded-2xl px-4 h-14 focus:border-indigo-500 ${colorScheme === "dark" ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}
-              >
-                <Ionicons name="mail-outline" size={20} color="#64748b" />
-                <TextInput
-                  placeholder="ejemplo@correo.com"
-                  className={`flex-1 ml-3 text-base ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}
-                  value={email}
-                  onChangeText={setEmail}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                />
-              </View>
-            </View>
+            <CustomInput
+              label="Email"
+              iconName="mail-outline"
+              colorScheme={colorScheme}
+              placeholder="ejemplo@correo.com"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              textContentType="emailAddress"
+            />
 
-            <View className="space-y-2 mt-4">
-              <Text
-                className={`text-slate-600 font-medium ml-1 ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}
-              >
-                Contraseña
-              </Text>
-              <View
-                className={`flex-row items-center border rounded-2xl px-4 h-14 focus:border-indigo-500 ${colorScheme === "dark" ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}
-              >
-                <Ionicons
-                  name="lock-closed-outline"
-                  size={20}
-                  color="#64748b"
-                />
-                <TextInput
-                  placeholder="Tu contraseña"
-                  className={`flex-1 ml-3 text-base ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}
-                  value={password}
-                  onChangeText={setPassword}
-                  secureTextEntry={!showPassword}
-                  onSubmitEditing={handleLogin}
-                />
-                <Pressable onPress={() => setShowPassword(!showPassword)}>
-                  <Ionicons
-                    name={showPassword ? "eye-off-outline" : "eye-outline"}
-                    size={20}
-                    color="#64748b"
-                  />
-                </Pressable>
-              </View>
-            </View>
+            <CustomInput
+              label="Contraseña"
+              iconName="lock-closed-outline"
+              colorScheme={colorScheme}
+              placeholder="Tu contraseña"
+              value={password}
+              onChangeText={setPassword}
+              isPassword={true}
+              onSubmitEditing={handleLogin}
+              textContentType="password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              clearTextOnFocus={false}
+              keyboardType="default"
+            />
 
             <Pressable
               onPress={() => console.log("Recuperar contraseña")}
@@ -154,7 +114,7 @@ const LoginSection = (props: Props) => {
 
             <Pressable
               onPress={handleLogin}
-              className="bg-indigo-600 h-14 rounded-2xl justify-center items-center shadow-lg  active:bg-indigo-700 mt-6"
+              className="bg-indigo-600 h-14 rounded-2xl justify-center items-center shadow-lg active:bg-indigo-700 mt-6"
             >
               <Text
                 className={`font-bold text-lg ${colorScheme === "dark" ? "text-slate-100" : "text-white"}`}
@@ -163,40 +123,15 @@ const LoginSection = (props: Props) => {
               </Text>
             </Pressable>
           </View>
-          <View className="flex-row items-center my-4">
-            <View
-              className={`flex-1  ${colorScheme === "dark" ? "bg-slate-800" : "bg-slate-300"}`}
-            />
-            <Text
-              className={`mx-4 text-sm ${colorScheme === "dark" ? "text-slate-400" : "text-slate-500"}`}
-            >
-              O continúa con
-            </Text>
-            <View
-              className={`flex-1  ${colorScheme === "dark" ? "bg-slate-800" : "bg-slate-300"}`}
-            />
-          </View>
-          <StyledPressable
+
+          <AuthDivider colorScheme={colorScheme} />
+
+          <SocialButton
+            provider="Google"
+            iconName="logo-google"
+            colorScheme={colorScheme}
             onPress={() => promptAsync()}
-            className={`flex-row items-center justify-center h-14 rounded-2xl ${
-              colorScheme === "dark" ? "bg-slate-800" : "bg-slate-200"
-            } active:bg-slate-300`}
-          >
-            {/* Icono de Google */}
-            <Ionicons
-              name="logo-google"
-              size={20}
-              color={colorScheme === "dark" ? "white" : "black"}
-              style={{ marginRight: 12 }}
-            />
-            <Text
-              className={`font-bold text-lg ${
-                colorScheme === "dark" ? "text-white" : "text-slate-800"
-              }`}
-            >
-              Google
-            </Text>
-          </StyledPressable>
+          />
 
           <View className="flex-row justify-center mt-8">
             <Text

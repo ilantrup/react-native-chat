@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, useColorScheme, View } from "react-native";
-import { EmergencyButton } from "@/components/EmergencyButton";
+import { EmergencyButton } from "@/components/ServicesComponents/EmergencyButton";
 
 const AllServicesSection = () => {
   const colorScheme = useColorScheme();

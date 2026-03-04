@@ -1,5 +1,5 @@
 import { FlatList, LayoutChangeEvent } from "react-native";
-import MessageBubble from "../components/MessageBubble";
+import MessageBubble from "../components/ChatsComponents/MessageBubble";
 import { useState } from "react";
 
 export default function MessagesSection({ messages }: { messages: string[] }) {

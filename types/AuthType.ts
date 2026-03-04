@@ -1,10 +1,5 @@
-export type User = {
-  email: string;
-  name: string;
-  picture: string;
-  familyName: string;
-  fullName: string;
-};
+import { User } from "./UserTypes";
+
 
 export type AuthState = {
   isLoggedIn: boolean;

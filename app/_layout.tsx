@@ -44,6 +44,7 @@ export default function RootLayout() {
     if (!isLoggedIn && inAuthGroup) {
       router.replace("/(auth)");
     } else if (isLoggedIn && userInfo.email && segments[0] === "(auth)") {
+      console.log("Entre al protected")
       router.replace("/(protected)");
     }
   }, [isLoggedIn, segments, loaded]);

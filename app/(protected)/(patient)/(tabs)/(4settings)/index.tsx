@@ -1,6 +1,6 @@
 import { useAuthStore } from "@/store/authStore";
 import { Ionicons } from "@expo/vector-icons";
-import { Pressable, Text, useColorScheme, View } from "react-native";
+import { Image, Pressable, Text, useColorScheme, View } from "react-native";
 
 export default function Settings() {
   const logout = useAuthStore((state) => state.logout);
@@ -15,8 +15,17 @@ export default function Settings() {
       >
         {/* ITEM 1: Username */}
         <View className="flex-row items-center p-4 border-b border-gray-100">
-          <View className="bg-blue-100 p-2 rounded-full mr-4">
-            <Ionicons name="person" size={20} color="#3b82f6" />
+          <View
+            className={`bg-blue-100 ${userInfo?.picture ? "p-0" : "p-2"} rounded-full mr-4`}
+          >
+            {userInfo?.picture ? (
+              <Image
+                source={{ uri: userInfo?.picture }}
+                className="w-10 h-10 rounded-full"
+              />
+            ) : (
+              <Ionicons name="person" size={20} color="#3b82f6" />
+            )}
           </View>
           <View>
             <Text className="text-gray-500 text-xs uppercase font-bold">

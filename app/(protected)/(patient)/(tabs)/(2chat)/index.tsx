@@ -10,6 +10,7 @@ export default function AllChatsScreen() {
   const insets = useSafeAreaInsets();
   const setChats = useChatStore((state) => state.setChats);
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  
 
   useEffect(() => {
     setChats(MOCK_CHATS);
@@ -35,7 +36,7 @@ export default function AllChatsScreen() {
   }, []);
 
   return (
-    <View className=" flex-1">
+    <View className={`flex-1 ${colorScheme === "dark" ? "bg-black" : "bg-white"}`}>
       <AllChatsSection />
     </View>
   );

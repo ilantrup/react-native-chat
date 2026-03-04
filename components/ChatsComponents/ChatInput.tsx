@@ -1,7 +1,6 @@
-import { Pressable, TextInput, View } from "react-native";
-import { SendIcon } from "./Icons";
-import { useColorScheme } from "react-native";
 import { styled } from "nativewind";
+import { Pressable, TextInput, useColorScheme, View } from "react-native";
+import { SendIcon } from "../Icons";
 
 export default function ChatInput() {
   const colorScheme = useColorScheme();

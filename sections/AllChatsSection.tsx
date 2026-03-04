@@ -1,10 +1,8 @@
-import { useState } from "react";
-import { FlatList, LayoutChangeEvent, Platform } from "react-native";
-import { ChatCard } from "@/components/ChatCard";
-import Separator from "@/components/Separator";
+import { ChatCard } from "@/components/ChatsComponents/ChatCard";
+import Separator from "@/components/ChatsComponents/Separator";
 import { useChatStore } from "@/store/chatStore";
-import { Chat } from "@/types/ChatType";
-import { TAB_BAR_HEIGHT } from "@/constants/Config";
+import { useState } from "react";
+import { FlatList, LayoutChangeEvent } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function AllChatsSection() {

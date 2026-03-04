@@ -11,7 +11,6 @@ export default function LoginScreen() {
   const login = useAuthStore((state) => state.login);
   const googleLogin = useAuthStore((state) => state.googleLogin);
   const userInfo = useAuthStore((state) => state.userInfo);
-  console.log("La info del user es: ", userInfo);
   const colorScheme = useColorScheme();
 
   const [email, setEmail] = useState("");
@@ -21,6 +20,10 @@ export default function LoginScreen() {
     iosClientId: process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID_IOS,
     androidClientId: process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID_ANDROID,
   });
+
+  useEffect(() => {
+    console.log("La info del user es: ", userInfo);
+  }, []);
 
   useEffect(() => {
     if (response?.type === "success") {

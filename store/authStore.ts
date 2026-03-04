@@ -1,4 +1,5 @@
-import { AuthState, User } from "@/types/AuthType";
+import { USER_ROLE } from "@/constants/User";
+import { AuthState } from "@/types/AuthType";
 import { getUserInfo } from "@/utils/GoogleUtils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
@@ -16,6 +17,7 @@ const defaultState = {
     familyName: "",
     picture: "",
     fullName: "",
+    role: null,
   },
 };
 
@@ -48,6 +50,7 @@ export const useAuthStore = create<AuthState>()(
               familyName: "Trupkin",
               picture: "",
               fullName: "Ilan Trupkin",
+              role: USER_ROLE,
             }, //data.user,
             isLoading: false,
           });
@@ -80,7 +83,13 @@ export const useAuthStore = create<AuthState>()(
       storage: createJSONStorage(() => AsyncStorage),
       partialize: (state) => ({
         isLoggedIn: state.isLoggedIn,
-        userInfo: state.userInfo,
+        userInfo: {
+          email: state.userInfo.email,
+          name: state.userInfo.name,
+          familyName: state.userInfo.familyName,
+          picture: state.userInfo.picture,
+          fullName: state.userInfo.fullName,
+        },
       }),
     },
   ),

@@ -23,37 +23,6 @@ export default function TabLayout() {
         <Label>Ajustes</Label>
         <Icon sf={"gear"} drawable="ic_menu_manage" />
       </NativeTabs.Trigger>
-
-      {/*<Tabs.Screen
-        name="(1services)"
-        options={{
-          title: "Todos los servicios",
-          tabBarLabel: "Ayuda",
-          tabBarIcon: () => ({ sfSymbol: "lifepreserver" }),
-        }}
-      />
-      <Tabs.Screen
-        name="(2chat)"
-        options={{
-          <Tabs.Screen
-          title: "Todos los chats",
-          tabBarLabel: "Chats",
-          tabBarIcon: () => ({ sfSymbol: "message" }),
-        }}
-      />
-        name="(3location)"
-        options={{
-          title: "Ubicación",
-          tabBarIcon: () => ({ sfSymbol: "location" }),
-        }}
-      />
-      <Tabs.Screen
-        name="(4settings)"
-        options={{
-          title: "Ajustes",
-          tabBarIcon: () => ({ sfSymbol: "gear" }),
-        }}
-      />*/}
     </NativeTabs>
   );
 }

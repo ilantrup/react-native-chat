@@ -1,4 +1,5 @@
-import { User } from "@/types/AuthType";
+import { USER_ROLE } from "@/constants/User";
+import { User } from "@/types/UserTypes";
 
 export async function getUserInfo(token: string | undefined): Promise<User> {
   if (!token) throw new Error("No token provided");
@@ -15,5 +16,6 @@ export async function getUserInfo(token: string | undefined): Promise<User> {
     picture: userInfo.picture,
     familyName: userInfo.family_name,
     fullName: userInfo.name,
+    role: USER_ROLE
   };
 }

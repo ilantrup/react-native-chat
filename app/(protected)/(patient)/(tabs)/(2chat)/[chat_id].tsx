@@ -1,9 +1,9 @@
-import ChatInput from "@/components/ChatInput";
-import ChatHeader from "@/components/ChatHeader";
+import ChatHeader from "@/components/ChatsComponents/ChatHeader";
+import ChatInput from "@/components/ChatsComponents/ChatInput";
 import { Messages } from "@/constants/Messages";
 import MessagesSection from "@/sections/MessagesSection";
 import { useChatStore } from "@/store/chatStore";
-import { useLocalSearchParams, Stack } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   Keyboard,
@@ -72,7 +72,7 @@ export default function ChatScreen() {
         className="p-2 border-t border-gray-200"
         style={{
           paddingBottom: isKeyboardVisible
-            ? 10
+            ? 20
             : insets.bottom + TAB_BAR_HEIGHT + 10,
         }}
       >
