@@ -1,6 +1,5 @@
 import LoginSection from "@/sections/LoginSection/LoginSection";
 import { useAuthStore } from "@/store/authStore";
-import { getUserInfo } from "@/utils/GoogleUtils";
 import * as Google from "expo-auth-session/providers/google";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";

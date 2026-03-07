@@ -22,8 +22,8 @@ export const SocialButton = ({
     <StyledPressable
       onPress={onPress}
       className={`flex-row items-center justify-center h-14 rounded-2xl ${
-        colorScheme === "dark" ? "bg-slate-800" : "bg-slate-200"
-      } active:bg-slate-300`}
+        colorScheme === "dark" ? "bg-slate-800 active:bg-slate-600" : "bg-slate-200 active:bg-slate-300"
+      }`}
     >
       <Ionicons
         name={iconName}

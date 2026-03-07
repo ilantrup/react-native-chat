@@ -1,5 +1,5 @@
-import { USER_ROLE } from "@/constants/User";
 import { AuthState } from "@/types/AuthType";
+import { RoleEnum } from "@/types/UserTypes";
 import { getUserInfo } from "@/utils/GoogleUtils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
@@ -50,7 +50,7 @@ export const useAuthStore = create<AuthState>()(
               familyName: "Trupkin",
               picture: "",
               fullName: "Ilan Trupkin",
-              role: USER_ROLE,
+              role: email.includes("@") ? RoleEnum.PATIENT : RoleEnum.DOCTOR, // Si tiene @ es paciente, si no es doctor
             }, //data.user,
             isLoading: false,
           });

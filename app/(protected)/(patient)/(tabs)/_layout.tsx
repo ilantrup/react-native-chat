@@ -21,7 +21,7 @@ export default function TabLayout() {
 
       <NativeTabs.Trigger name="(4settings)">
         <Label>Ajustes</Label>
-        <Icon sf={"gear"} drawable="ic_menu_manage" />
+        <Icon sf={"gearshape"} drawable="ic_menu_manage" />
       </NativeTabs.Trigger>
     </NativeTabs>
   );

@@ -66,8 +66,7 @@ const LoginSection = (props: Props) => {
           }}
         />
 
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        <View
           className="flex-1 justify-center px-6"
         >
           <AuthHeader colorScheme={colorScheme} />
@@ -147,7 +146,7 @@ const LoginSection = (props: Props) => {
               </Text>
             </Pressable>
           </View>
-        </KeyboardAvoidingView>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );

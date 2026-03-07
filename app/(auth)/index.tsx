@@ -1,7 +1,6 @@
-import { useAuthStore } from "@/store/authStore";
-import { Pressable, Text, useColorScheme, View } from "react-native";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { Pressable, Text, useColorScheme, View } from "react-native";
 
 export default function Login() {
   const router = useRouter();
@@ -17,15 +16,21 @@ export default function Login() {
   };
 
   return (
-    <View className={`flex-1 ${colorScheme === "dark" ? "bg-black" : "bg-slate-50"}`}>
+    <View
+      className={`flex-1 ${colorScheme === "dark" ? "bg-black" : "bg-slate-50"}`}
+    >
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
 
       <View className="flex-1 justify-center px-8">
         <View className="mb-12 items-center">
-          <Text className={`text-4xl font-extrabold mb-2 ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}>
+          <Text
+            className={`text-4xl font-extrabold mb-2 ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}
+          >
             Bienvenido
           </Text>
-          <Text className={`text-lg text-center ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}>
+          <Text
+            className={`text-lg text-center ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}
+          >
             Tu salud empieza aquí
           </Text>
         </View>
@@ -41,9 +46,13 @@ export default function Login() {
         {/* Botón de Signup (Secundario / Outline) */}
         <Pressable
           onPress={handleSignup}
-          className={`w-full py-4 rounded-2xl items-center shadow-sm active:bg-slate-50 ${colorScheme === "dark" ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}
+          className={`w-full py-4 rounded-2xl items-center shadow-sm  ${colorScheme === "dark" ? "bg-slate-800 border-slate-700 active:bg-slate-600" : "bg-white border-slate-200 active:bg-slate-100"}`}
         >
-          <Text className={`font-bold text-lg ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}>Crear cuenta</Text>
+          <Text
+            className={`font-bold text-lg ${colorScheme === "dark" ? "text-slate-100" : "text-slate-800"}`}
+          >
+            Crear cuenta
+          </Text>
         </Pressable>
       </View>
 

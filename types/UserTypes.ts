@@ -1,4 +1,8 @@
-export type Role = "patient" | "doctor" | null;
+
+export enum RoleEnum {
+  PATIENT = "patient",
+  DOCTOR = "doctor",
+}
 
 export type User = {
   email: string;
@@ -6,5 +10,5 @@ export type User = {
   picture: string;
   familyName: string;
   fullName: string;
-  role: Role;
+  role: RoleEnum | null;
 };

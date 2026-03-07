@@ -6,7 +6,11 @@ export default function TabLayout() {
     <NativeTabs>
       <NativeTabs.Trigger name="(1patients)">
         <Label>Pacientes</Label>
-        <Icon sf={"person.fill"} drawable="ic_person" />
+        <Icon sf={"person.3.fill"} drawable="ic_person" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="(4settings)">
+        <Label>Ajustes</Label>
+        <Icon sf={"gearshape.fill"} drawable="ic_menu_manage" />
       </NativeTabs.Trigger>
     </NativeTabs>
   );
